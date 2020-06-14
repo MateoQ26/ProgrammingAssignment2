@@ -10,21 +10,28 @@ makeCacheMatrix <- function(x = matrix()) {
                 x <<- y
                 inve <<- NULL
         }
+        #Establece la matriz x en un nuevo vector y
+        #Reinicializa la inversa 
         get <- function() x
+        #Retorna la matriz x
         setinve <- function(inverse) inve <<- inverse
+        #Establece ña inversa
         getinve <- function() inve
         list(set = set, get = get, 
              setinve = setinve, getinve = getinve)
+        #Retorna el vector especial
 }
 ############################### Cache Matrix ##################
 cacheSolve <- function(x, ...) {
-        inve <- x$getinve()
-        if (!is.null(i)) {
+        inve <- x$getinve()     #Llama a la funcion inve del
+                                #entorno makeVector
+        if (!is.null(inve)) {
                 message("getting cached data")
-                return(i)
+                return(inve)
+                #Verifoca si existe la inversa, y la retorna
         }
         data <- x$get()
-        inve <- solve(data, ...)
+        inve <- solve(data, ...) #Calcula la inversa
         x$setinve(inve)
         inve
 }
